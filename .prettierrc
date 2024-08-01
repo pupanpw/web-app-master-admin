@@ -1,0 +1,21 @@
+{
+    "semi": true,
+    "tabWidth": 4,
+    "printWidth": 140,
+    "singleQuote": true,
+    "arrowParens": "always",
+    "trailingComma": "all",
+    "quoteProps": "preserve",
+    "importOrder": [
+        "^react|^@redux|^redux-",
+        "antd|@ant-design/(.*)$|@mui/(.*)$",
+        "^common/(.*)$|^components/(.*)$|^pages/(.*)$",
+        "^constants/(.*)$|^types/(.*)$",
+        "^api/(.*)$|^helper/(.*)$|^hooks/(.*)$|^locales/(.*)$|^redux/(.*)$|^store/(.*)$|^utils/(.*)$",
+        "^[./]",
+        "^@[./]",
+        "^"
+    ],
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true
+}

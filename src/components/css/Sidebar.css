@@ -1,0 +1,35 @@
+.sidebar {
+    height: calc(100vh - 64px);
+    position: fixed;
+    top: 64px;
+    left: 0;
+    background: #001529;
+    overflow: auto;
+    transition:
+        width 0.3s,
+        left 0.3s;
+    z-index: 1;
+}
+
+.sidebar.collapsed {
+    width: 80px;
+    left: 0;
+}
+
+.sidebar .ant-menu {
+    height: 100%;
+    border-right: 0;
+}
+
+.sidebar.collapsed .ant-menu-item {
+    text-align: center;
+}
+
+.sidebar.collapsed .ant-menu-item-icon {
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar.collapsed .ant-menu-item > a {
+    text-align: center;
+}
