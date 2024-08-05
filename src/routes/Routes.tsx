@@ -1,19 +1,20 @@
-import AppLayout from 'components/Layout';
-import AboutPage from 'pages/About/AboutPage';
-import HomePage from 'pages/home/HomPage';
-import NotFoundPage from 'pages/NotFound/NotFoundPage';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import NotFoundPage from 'pages/error/NotFoundPage';
+import PrivateRoute from 'components/PrivateRoute';
+import Login from 'pages/login/Login';
+import MainLayoutRoute from './MainLayoutRoute';
 
 const AppRoutes: React.FC = () => (
     <Router>
-        <AppLayout>
-            <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/about" element={<AboutPage />} />
-                <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-        </AppLayout>
+        <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route element={<PrivateRoute />}>
+                <Route path="/:menu" element={<MainLayoutRoute />}>
+                    <Route path="*" element={<NotFoundPage />} />
+                </Route>
+            </Route>
+        </Routes>
     </Router>
 );
 
