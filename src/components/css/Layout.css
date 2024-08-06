@@ -1,33 +1,13 @@
-.sidebar {
-    background: #fff;
-    width: 250px;
-    transition: width 0.3s;
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Prevent body scroll */
 }
 
-.sidebar.collapsed {
-    width: 80px;
-}
-
-@media (max-width: 1200px) {
-    .sidebar {
-        width: 200px;
-    }
-}
-
-@media (max-width: 768px) {
-    .sidebar {
-        width: 150px;
-    }
-}
-
-@media (max-width: 576px) {
-    .sidebar {
-        width: 100px;
-    }
-}
-
-@media (max-width: 576px) {
-    .sidebar.collapsed {
-        width: 60px;
-    }
+.layout {
+    /* height: 100vh; */
+    display: flex;
+    flex-direction: column;
 }

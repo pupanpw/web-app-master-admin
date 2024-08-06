@@ -1,12 +1,16 @@
 import React from 'react';
 import { Layout, Button } from 'antd';
 import './css/Header.css';
+import { useNavigate } from 'react-router-dom';
 
 const { Header } = Layout;
 
 const AppHeader: React.FC = () => {
+    const navigate = useNavigate();
+
     const handleLogout = () => {
-        console.log('Logout clicked');
+        localStorage.removeItem('access_token');
+        navigate('/login');
     };
 
     return (

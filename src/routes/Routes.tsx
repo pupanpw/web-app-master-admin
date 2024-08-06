@@ -10,9 +10,8 @@ const AppRoutes: React.FC = () => (
         <Routes>
             <Route path="/login" element={<Login />} />
             <Route element={<PrivateRoute />}>
-                <Route path="/:menu" element={<MainLayoutRoute />}>
-                    <Route path="*" element={<NotFoundPage />} />
-                </Route>
+                <Route path="/:menu/*" element={<MainLayoutRoute />} />
+                <Route path="*" element={<NotFoundPage />} />
             </Route>
         </Routes>
     </Router>

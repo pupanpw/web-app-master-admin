@@ -6,7 +6,6 @@ import { Spin } from 'antd';
 const PrivateRoute: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    // const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const validateToken = async () => {
@@ -35,7 +34,7 @@ const PrivateRoute: React.FC = () => {
         };
 
         validateToken();
-    }, [isAuthenticated]);
+    }, []);
 
     if (loading) {
         return (
@@ -44,14 +43,6 @@ const PrivateRoute: React.FC = () => {
             </div>
         );
     }
-
-    // if (error) {
-    //     return (
-    //         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-    //             <Alert message="Authentication Error" description={error} type="error" showIcon />
-    //         </div>
-    //     );
-    // }
     return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
 };
 

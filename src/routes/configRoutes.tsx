@@ -11,7 +11,6 @@ const routes = [
         path: '/about',
         element: <AboutPage />,
     },
-
     {
         path: '*',
         element: <NotFoundPage />,
