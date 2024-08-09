@@ -11,18 +11,15 @@ interface MainLayoutProps {
     menu?: string;
 }
 
-const MainLayout: React.FC<MainLayoutProps> = ({ children, menu }) => {
+const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     return (
         <Layout className="layout">
             <AppHeader />
             <Layout>
                 <Sidebar />
-                <Layout>
-                    <Content style={{ marginTop: '50px' }} className="content">
-                        <div>Menu: {menu}</div>
-                        {children}
-                    </Content>
-                </Layout>
+                <Content style={{ marginTop: '60px' }} className="content">
+                    {children}
+                </Content>
             </Layout>
         </Layout>
     );

@@ -3,6 +3,7 @@ import { Layout, Menu } from 'antd';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { HomeOutlined, InfoCircleOutlined, UserOutlined } from '@ant-design/icons';
 import './css/Sidebar.css';
+import { getRoleFromToken, getToken } from 'common/get-role';
 
 const { Sider } = Layout;
 
@@ -11,7 +12,8 @@ const Sidebar: React.FC = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [selectedKey, setSelectedKey] = useState<string>('');
-
+    const token = getToken();
+    const role = getRoleFromToken(token);
     const onCollapse = (collapsed: boolean) => {
         setCollapsed(collapsed);
     };
@@ -37,11 +39,15 @@ const Sidebar: React.FC = () => {
             icon: <InfoCircleOutlined />,
             label: 'About',
         },
-        {
-            key: 'users',
-            icon: <UserOutlined />,
-            label: 'Users',
-        },
+        ...(role !== 'user'
+            ? [
+                  {
+                      key: 'users',
+                      icon: <UserOutlined />,
+                      label: 'Users',
+                  },
+              ]
+            : []),
     ];
 
     return (
