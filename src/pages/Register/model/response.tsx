@@ -1,5 +1,6 @@
-interface ErrorResponse {
-    status_code: number;
+interface UserResponse {
+    status_code: string;
+    status: string;
     message: string;
-    error: string;
+    data: object | string | number | boolean | null;
 }

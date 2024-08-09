@@ -20,4 +20,25 @@ export const mockData = [
         humidity: 50.1,
         timestamp: '2024-08-05T10:10:00Z',
     },
+    {
+        key: '4',
+        sensorId: 'S003',
+        location: 'Room 103',
+        humidity: 11.1,
+        timestamp: '2024-08-05T10:10:00Z',
+    },
+    {
+        key: '5',
+        sensorId: 'S003',
+        location: 'Room 103',
+        humidity: 2.1,
+        timestamp: '2024-08-05T10:10:00Z',
+    },
+    {
+        key: '6',
+        sensorId: 'S003',
+        location: 'Room 103',
+        humidity: 1.1,
+        timestamp: '2024-08-05T10:10:00Z',
+    },
 ];

@@ -1,0 +1,20 @@
+/* User.css */
+
+.users-container {
+    width: 100%;
+}
+
+.ant-table {
+    overflow: hidden;
+}
+
+.ant-table-container {
+    max-height: 400px; /* Adjust height as needed */
+}
+
+.ant-table-thead > tr > th {
+    position: sticky;
+    top: 0;
+    background: #fff; /* Ensure the background is the same as your table */
+    z-index: 1; /* Ensure the header stays above other rows */
+}
