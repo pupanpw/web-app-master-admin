@@ -1,7 +1,7 @@
 import Home from 'pages/home/HomePage';
 import AboutPage from 'pages/About/AboutPage';
 import NotFoundPage from 'pages/error/NotFoundPage';
-import Users from 'pages/User/User';
+import Users from 'pages/user/User';
 
 const routes = [
     {
