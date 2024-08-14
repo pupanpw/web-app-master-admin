@@ -5,7 +5,9 @@ import { Table, Button, Row, Col, Input, Tag, Modal, Form, Select, notification 
 import { EditOutlined } from '@ant-design/icons';
 import axiosInstance from 'guard/axiosInstance';
 import { debounce } from 'lodash';
-import { formItemLayout, Role, User } from './interface/user.interface';
+import { User, formItemLayout, Role } from './interface/user.interface';
+import './User.css';
+import { AxiosErrorResponse } from 'pages/login/interface/AxiosErrorResponse';
 
 const Users: React.FC = () => {
     const [data, setData] = useState<User[]>([]);
@@ -43,7 +45,6 @@ const Users: React.FC = () => {
                 total: response.data.total,
             }));
         } catch (error) {
-            console.error('Error fetching users:', error);
             notification.error({
                 message: 'Failed to Fetch Users',
                 description: 'An error occurred while fetching users. Please try again later.',
@@ -78,13 +79,22 @@ const Users: React.FC = () => {
                 setLoadingModal(false);
             }
         } catch (error) {
-            console.error('Error updating user:', error);
             setLoadingModal(false);
-            notification.error({
-                message: 'Failed to Update User',
-                description: 'An error occurred while updating the user. Please try again later.',
-                placement: 'topRight',
-            });
+            const err = error as AxiosErrorResponse;
+
+            if (err.response?.data?.statusCode === 400) {
+                notification.error({
+                    message: err.response?.data.message,
+                    description: err.response?.data.error,
+                    placement: 'topRight',
+                });
+            } else {
+                notification.error({
+                    message: 'Failed to Update User',
+                    description: 'An error occurred while updating the user. Please try again later.',
+                    placement: 'topRight',
+                });
+            }
         }
     };
 
@@ -126,13 +136,11 @@ const Users: React.FC = () => {
                     ...values,
                     id: form.getFieldValue('id'),
                 };
-                console.log('Form values:', user);
                 updateUser(user);
                 setLoadingModal(true);
                 setOpen(false);
             })
-            .catch((info) => {
-                console.log('Validation Failed:', info);
+            .catch(function () {
                 notification.error({
                     message: 'Validation Failed',
                     description: 'Please correct the errors in the form before submitting.',
@@ -187,6 +195,7 @@ const Users: React.FC = () => {
         },
         {
             title: 'Actions',
+            width: '80px',
             key: 'actions',
             render: (_: any, record: User) => <Button icon={<EditOutlined />} onClick={() => handleEdit(record)}></Button>,
         },

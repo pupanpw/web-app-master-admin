@@ -1,4 +1,4 @@
-interface UserResponse {
+export interface UserResponse {
     status_code: string;
     status: string;
     message: string;

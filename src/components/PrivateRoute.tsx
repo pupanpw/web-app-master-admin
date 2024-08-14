@@ -7,6 +7,24 @@ const PrivateRoute: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+    const refreshAccessToken = async () => {
+        try {
+            const refreshToken = localStorage.getItem('refresh_token');
+            if (!refreshToken) return false;
+
+            const apiUrl = process.env.REACT_APP_API_URL;
+            const response = await axios.post(`${apiUrl}/auth/refresh-token`, {
+                refresh_token: refreshToken,
+            });
+
+            const { access_token } = response.data;
+            localStorage.setItem('access_token', access_token);
+            return true;
+        } catch (err) {
+            return false;
+        }
+    };
+
     useEffect(() => {
         const validateToken = async () => {
             try {
@@ -24,7 +42,12 @@ const PrivateRoute: React.FC = () => {
                     },
                 });
 
-                setIsAuthenticated(response.status === 200);
+                if (response.status === 200) {
+                    setIsAuthenticated(true);
+                } else {
+                    const refreshed = await refreshAccessToken();
+                    setIsAuthenticated(refreshed);
+                }
             } catch (err) {
                 console.error('Authentication check failed:', err);
                 setIsAuthenticated(false);

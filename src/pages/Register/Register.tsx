@@ -8,8 +8,6 @@ import './Register.css';
 
 const Register: React.FC = () => {
     const apiUrl = process.env.REACT_APP_API_URL;
-    const apiVersion = process.env.API_VERSION;
-    console.log(apiVersion);
     const navigate = useNavigate();
 
     const onFinish = async (values: { username: string; password: string; email: string; firstname: string; lastname: string }) => {
