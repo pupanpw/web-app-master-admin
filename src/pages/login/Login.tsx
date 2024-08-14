@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Form, Input, Button, Checkbox, message, Tooltip } from 'antd';
 import { UserOutlined, LockOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import axios from 'axios';
@@ -17,8 +17,9 @@ const Login: React.FC = () => {
                 password: values.password,
             });
 
-            const { access_token } = response.data;
+            const { access_token, refresh_token } = response.data;
             localStorage.setItem('access_token', access_token);
+            localStorage.setItem('refresh_token', refresh_token);
 
             navigate('/home');
             message.success('Login successful');
@@ -27,10 +28,6 @@ const Login: React.FC = () => {
             message.error('Login failed: ' + (err.response?.data?.message || 'Internal Server Error'));
         }
     };
-
-    useEffect(() => {
-        console.log('login');
-    }, []);
 
     return (
         <div className="login-container">
