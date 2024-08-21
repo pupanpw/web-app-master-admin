@@ -5,11 +5,13 @@ import PrivateRoute from 'components/PrivateRoute';
 import Login from 'pages/login/Login';
 import MainLayoutRoute from './MainLayoutRoute';
 import Register from 'pages/Register/Register';
+import TimeLine from 'pages/Test/test';
 
 const AppRoutes: React.FC = () => (
     <Router>
         <Routes>
             <Route path="/login" element={<Login />} />
+            <Route path="/test" element={<TimeLine />} />
             <Route path="/register" element={<Register />} />
             <Route element={<PrivateRoute />}>
                 <Route path="/:menu/*" element={<MainLayoutRoute />} />
